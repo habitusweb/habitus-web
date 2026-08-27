@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contacto — Habĭtus</title>
+<link rel="stylesheet" href="styles.css">
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init("7lyjfsVOzPSDUMmnd");
+</script>
+
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">HABĭTUS</a>
+</header>
+
+<main>
+  <section class="section onboarding-card">
+    <h2>Contacto</h2>
+    <p>Escríbenos y te responderemos lo antes posible.</p>
+
+    <form id="contact-form">
+      <label>Nombre<input name="name" required></label>
+      <label>Email<input name="email" type="email" required></label>
+      <label>Mensaje<textarea name="message" required></textarea></label>
+      <button class="button button-light" type="submit">Enviar mensaje →</button>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Habĭtus</p>
+</footer>
+
+<script>
+document.querySelector('#contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = this;
+
+  const payload = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value
+  };
+
+  emailjs.send("service_qlnnbte", "template_a83sajl", payload)
+    .then(() => {
+      alert("Mensaje enviado correctamente.");
+      form.reset();
+    })
+    .catch(() => alert("Error al enviar."));
+});
+</script>
+
+</body>
+</html>
